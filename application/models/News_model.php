@@ -6,6 +6,7 @@ class News_model extends CI_Model{
 	public function __construct(){
 		$this->load->database();
 	}//end constructor
+    
 	public function get_news($slug = FALSE)
 	{
         if ($slug === FALSE)
@@ -30,7 +31,10 @@ class News_model extends CI_Model{
 			'text' => $this->input->post('text')
 		);
 
-		return $this->db->insert('sp18_news', $data);
+		//return $this->db->insert('sp18_news', $data);
+        if($this->db->insert('sp18_news', $data)){
+            return $slug;
+        }
 	}//end set_news
 	
 }//end news model
